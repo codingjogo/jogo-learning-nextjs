@@ -10,7 +10,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
-export async function fetchRevenue() {
+export async function fetchRevenue() { // return all revenues
   // Add noStore() here to prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
 
@@ -24,7 +24,7 @@ export async function fetchRevenue() {
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
     // console.log('Data fetch completed after 3 seconds.');
-
+    // console.log(data.rows[0].revenue);
     return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -81,6 +81,13 @@ export async function fetchCardData() {
       totalPaidInvoices,
       totalPendingInvoices,
     };
+    // parallel fetching
+    // const data = Promise.all([
+    //   numberOfCustomers,
+    //   numberOfInvoices,
+    //   totalPaidInvoices,
+    //   totalPendingInvoices,
+    // ])
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch card data.');
