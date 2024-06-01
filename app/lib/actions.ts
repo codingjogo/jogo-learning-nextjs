@@ -88,6 +88,7 @@ export async function updateInvoice(
     };
   }
  
+  // method 2 of getting and passing data from hook useFormState
   const { customerId, amount, status } = validatedFields.data;
   const amountInCents = amount * 100;
  
